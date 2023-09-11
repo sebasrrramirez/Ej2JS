@@ -55,12 +55,17 @@ const pizzasIdImpar = pizzas
   .map((pizza) => console.log(`-${pizza.nombre} - Id: ${pizza.id}`));
 
 //b) Responder: ¿Hay alguna pizza que valga menos de $600?
-const pizzasMenor600 = pizzas.filter((pizza) => pizza.precio <= 600);
+const precioPizza = 600; // guardo en variable el precio
+const pizzasMenor600 = pizzas.filter((pizza) => pizza.precio <= precioPizza); // filtro por precio
 
-console.log("Las pizzas que valen menos de $600 son:");
-pizzasMenor600.forEach((pizza) => {
-  console.log(`- ${pizza.nombre}- Precio: $${pizza.precio}`);
-});
+if (pizzasMenor600.length === 0) {
+  console.log(`No tenemos pizzas con precio menor a $ ${precioPizza}`);
+} else {
+  console.log(`Las pizzas que valen menos de $ ${precioPizza} son:`);
+  pizzasMenor600.forEach((pizza) => {
+    console.log(`- ${pizza.nombre}- Precio: $${pizza.precio}`);
+  });
+}
 
 //c) El nombre de cada pizza con su respectivo precio.
 console.log("El nombre de cada pizza con su respectivo precio");
