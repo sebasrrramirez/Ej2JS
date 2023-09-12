@@ -49,34 +49,48 @@ const pizzas = [
 ];
 
 //Consigna a)  Las pizzas que tengan un id impar.
-console.log("Las pizzas con un ID impar son:");
-const pizzasIdImpar = pizzas
-  .filter((pizza) => pizza.id % 2 === 1)
-  .map((pizza) => console.log(`-${pizza.nombre} - Id: ${pizza.id}`));
+
+console.log("Las pizzas con ID impar");
+pizzas.forEach((pizza) => {
+  if (pizza.id % 2 !== 0) {
+    console.log(`La ${pizza.nombre} tiene ID ${pizza.id}`);
+  }
+});
 
 //b) Responder: ¿Hay alguna pizza que valga menos de $600?
 const precioPizza = 600; // guardo en variable el precio
-const pizzasMenor600 = pizzas.filter((pizza) => pizza.precio <= precioPizza); // filtro por precio
 
-if (pizzasMenor600.length === 0) {
-  console.log(`No tenemos pizzas con precio menor a $ ${precioPizza}`);
-} else {
-  console.log(`Las pizzas que valen menos de $ ${precioPizza} son:`);
-  pizzasMenor600.forEach((pizza) => {
-    console.log(`- ${pizza.nombre}- Precio: $${pizza.precio}`);
+const pizzaMenos600 = pizzas.find((pizza) => pizza.precio < precioPizza);
+if (pizzaMenos600) {
+  console.log(`Si, hay pizzas por menos de ${precioPizza}`);
+  pizzas.forEach((pizza) => {
+    if (pizza.precio < precioPizza) {
+      console.log(`La ${pizza.nombre} cuesta $${pizza.precio}`);
+    }
   });
+} else {
+  console.log(`No hay pizzas por menos de ${precioPizza}`);
 }
 
 //c) El nombre de cada pizza con su respectivo precio.
 console.log("El nombre de cada pizza con su respectivo precio");
-const PizzaPrecio = pizzas.map((pizza) =>
-  console.log(`-${pizza.nombre} - Precio: $${pizza.precio}`)
-);
+pizzas.forEach((pizza) => {
+  console.log(`La ${pizza.nombre}, cuesta $${pizza.precio}`);
+});
+
+//const PizzaPrecio = pizzas.map((pizza) =>
+//  console.log(`-${pizza.nombre} - Precio: $${pizza.precio}`)
+//);
 
 //d) Todos los ingredientes de cada pizza (En cada iteración imprimir los ingredientes de la pizza que se esta
 // recorriendo). Ayuda: van a tener que realizar dos recorridos, ya que cada pizza del array de pizzas
 //tiene una propiedad "ingredientes" cuyo valor es un array con ingredientes.
-console.log("La pizza y sus ingredientes:");
-const PizzaIngredientes = pizzas.map((pizza) =>
-  console.log(`-${pizza.nombre} - Ingredientes: ${pizza.ingredientes}`)
-);
+console.log("Los ingredientes de cada pizza");
+pizzas.forEach((pizza) => {
+  console.log(`La ${pizza.nombre}, tiene ${pizza.ingredientes}`);
+});
+
+//console.log("La pizza y sus ingredientes:");
+//const PizzaIngredientes = pizzas.map((pizza) =>
+//  console.log(`-${pizza.nombre} - Ingredientes: ${pizza.ingredientes}`)
+//);
